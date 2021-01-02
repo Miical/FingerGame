@@ -3,6 +3,8 @@
 #include<queue>
 #include<cstring>
 #include<vector>
+#include<ctime>
+#include<stdlib.h>
 #include<windows.h>
 using namespace std;
 const int MAXN=10005;
@@ -136,6 +138,7 @@ void init(){
 	build();
 	solve_tarjan();
 	solve_dp();
+	srand(time(0));
 }
 //----------------------
 
@@ -159,9 +162,13 @@ int input(int st){
 	return a*1000+b*100+c*10+d;
 }
 int solve(int st){
-	for(auto x:{2,4,3,1})
+	vector<int> ans;
+	for(auto x:{2,4,3,1}){
+		ans.clear();
 		for(int i=1;i<=4;i++)
-			if(P(st,i)!=-1&&f[change(P(st,i))]==x) return P(st,i);
+			if(P(st,i)!=-1&&f[change(P(st,i))]==x) ans.push_back(P(st,i));
+		if(ans.size()) return ans[(rand()%ans.size())];
+	}
 }
 void debug(int st){
 	cout<<"\n------------------------------------\n";
@@ -177,7 +184,7 @@ void work(int y){
 
 	while(1){
 		st=change(solve(change(st))); output(st);
-		if(check(change(st))) break;
+		if(check(st)) break;
 		
 		st=input(st); output(st); Sleep(200);
 		if(check(change(st))) break;
@@ -189,6 +196,7 @@ void work(int y){
 }
 int main(){
 	init();
+	
 	cout<<"先手1 后手2：";
 	int opt; scanf("%d",&opt);
 	
