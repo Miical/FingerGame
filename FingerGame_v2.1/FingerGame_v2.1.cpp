@@ -171,21 +171,29 @@ void debug(int st){
 	cout<<"\n------------------------------------\n";
 	system("pause");
 }
-int main(){
-	init();
-
+void work(int y){
 	int st=1111; output(st);
-	while(!check(st)){
-		st=input(st); output(st);
-  		if(check(change(st))) break; //debug(change(st));
-		Sleep(100);
-	
-  		st=change(solve(change(st)));
-		output(st);
+	if(y==1){st=input(st); output(st); Sleep(200);}
+
+	while(1){
+		st=change(solve(change(st))); output(st);
+		if(check(change(st))) break;
+		
+		st=input(st); output(st); Sleep(200);
+		if(check(change(st))) break;
 	}
+	
 	if(check(st) ==1) cout<<"You lose!"<<endl;
 	else if(check(st) ==2) cout<<"You win!"<<endl;
 	else cout<<"Draw!"<<endl;
+}
+int main(){
+	init();
+	cout<<"先手1 后手2：";
+	int opt; scanf("%d",&opt);
+	
+	work(opt);
+	
 	system("pause");
 	return 0;
 }
