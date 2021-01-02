@@ -3,6 +3,7 @@
 #include<queue>
 #include<cstring>
 #include<vector>
+#include<string>
 #include<ctime>
 #include<stdlib.h>
 #include<windows.h>
@@ -156,8 +157,18 @@ void output(int st){
 }
 int input(int st){
 	int a=st/1000,b=(st/100) %10,c=(st/10) %10,d=st%10;
-	int x,y;cin>>x>>y;
-	if(c==x){c=(c+y) %10;}
+	int x,y;
+
+	while(1){
+		x=y=-1; cin>>x>>y;
+		if((x!=0&&(x==c||x==d))&&(y!=0&&(y==a||y==b))) break;
+		else{
+			cout<<"Error!"<<endl;
+			if(cin.fail()){cin.clear(); while(cin.get()!='\n');}
+		}
+	}
+	
+	if(c==x){c=(c+y)%10;}
 	else{d=(d+y)%10;}
 	return a*1000+b*100+c*10+d;
 }
@@ -197,8 +208,17 @@ void work(int y){
 int main(){
 	init();
 	
-	cout<<"先手1 后手2：";
-	int opt; scanf("%d",&opt);
+	cout<<"1.first  2.second: ";
+	int opt;
+
+	while(1){
+		opt=-1; cin>>opt;
+		if(opt==1||opt==2) break;
+		else{
+			cout<<"Error!"<<endl;
+			if(cin.fail()){cin.clear(); while(cin.get()!='\n');}
+		}
+	}
 	
 	work(opt);
 	
