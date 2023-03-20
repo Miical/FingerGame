@@ -28,8 +28,8 @@ int changeRoles(int st) { return st % 100 * 100 + st / 100; }
  * 假设a, b分别表示对方的左右手，c, d分别表示我方的左右手，则操作op定义如下：
  *     1 - 用c触碰a
  *     2 - 用c触碰b
- *     1 - 用d触碰a
- *     1 - 用c触碰b
+ *     3 - 用d触碰a
+ *     4 - 用c触碰b
  */
 int touch(int st, int op) {
   int a = st / 1000, b = (st / 100) % 10, c = (st / 10) % 10, d = st % 10;
